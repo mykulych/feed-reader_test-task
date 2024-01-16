@@ -1,6 +1,6 @@
 import { Flex, Heading, Button, Stack, chakra, Box, Avatar, useToast } from "@chakra-ui/react";
-import { TextField } from "../Fields/TextField";
-import { PasswordField } from "../Fields/PasswordField";
+import { TextField } from "./fields/TextField";
+import { PasswordField } from "./fields/PasswordField";
 import { FaUserAlt, FaLock } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import Cookies from "universal-cookie";
