@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FormControl, InputGroup, InputLeftElement, Input, InputRightElement, Button } from "@chakra-ui/react";
 
-export const PasswordField = ({leftElement}) => {
+export const PasswordField = ({ id, register, validation, leftElement }) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const handleShowClick = () => setShowPassword(!showPassword);
@@ -15,6 +15,7 @@ export const PasswordField = ({leftElement}) => {
           children={leftElement}
         />
         <Input
+          {...register(id, validation)}
           type={showPassword ? "text" : "password"}
           placeholder="Password"
         />
