@@ -4,7 +4,7 @@ export const TextField = ({ id, register, validation, type = "text", placeholder
   return (
     <FormControl>
       <InputGroup>
-        <InputLeftElement pointerEvents="none" children={leftElement} />
+        { leftElement ? <InputLeftElement pointerEvents="none" children={leftElement} /> : null }
         <Input type={type} {...register(id, validation)} placeholder={placeholder} />
       </InputGroup>
     </FormControl>

@@ -29,8 +29,7 @@ export const Header = () => {
       </Flex>
       <Button
         type="submit"
-        variant="solid"
-        colorScheme="teal"
+        variant="transparent"
         onClick={handleLogout}
       >
         Logout

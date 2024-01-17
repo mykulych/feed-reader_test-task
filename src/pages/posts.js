@@ -1,8 +1,8 @@
 import { Layout } from "../components/layout/Layout"
-import { PostsList } from "../components/postsList/PostsList"
+import { PostsContainer } from "../containers/PostsContainer"
 
 export const Posts = () => {
     return <Layout>
-        <PostsList />
+        <PostsContainer />
     </Layout>
 }
