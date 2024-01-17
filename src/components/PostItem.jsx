@@ -5,7 +5,7 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 const CFaEdit = chakra(FaEdit);
 const CFaTrash = chakra(FaTrash);
 
-export function PostsListItem({item, onEdit, onRemove}) {
+export function PostItem({item, onEdit, onRemove}) {
   const [show, setShow] = useState(false)
   return (
     <Card onMouseOver={() => setShow(true)} onMouseLeave={() => setShow(false)}>

@@ -1,9 +1,10 @@
 import { Box, Button, Divider, Flex, Heading, useDisclosure, useToast } from "@chakra-ui/react";
 import { PostModal } from "../components/modals/PostModal";
-import { PostsList } from "../components/postsList/PostsList"
 import { useCreatePostMutation, useGetPostsQuery, useRemovePostMutation, useUpdatePostMutation } from "../store/jsonplaceholder.api"
 import { ConfirmationModal } from "../components/modals/ConfirmationModal";
 import { useRef } from "react";
+import { List } from "../components/List";
+import { PostItem } from "../components/PostItem";
 
 export const PostsContainer = () => {
   const { data: posts, ...postsState } = useGetPostsQuery();
@@ -60,13 +61,24 @@ export const PostsContainer = () => {
     }
   }
 
+  const postItemProps = {
+    onEdit: (data) => {
+      selectedPost.current = data;
+      updatePostModal.onOpen();
+    },
+    onRemove: (data) => {
+      selectedPost.current = data;
+      removePostModal.onOpen();
+    }
+  }
+
   return (
     <>
       <PostModal {...createPostModal} header="Create new post" onSubmit={handlePostCreate} />
       <PostModal {...updatePostModal} header="Update post" onSubmit={handlePostUpdate} />
       <ConfirmationModal {...removePostModal} text="Are you sure you want to delete this post?" onConfirm={handleRemovePost} />
       <Box p={10}>
-        <Flex mb={8} justifyContent="space-between">
+        <Flex justifyContent="space-between">
           <Heading as="h1" size="lg">
             Posts
           </Heading>
@@ -74,19 +86,8 @@ export const PostsContainer = () => {
             Create new post
           </Button>
         </Flex>
-        <Divider />
-        <PostsList
-          items={posts}
-          {...postsState}
-          onEdit={(data) => {
-            selectedPost.current = data;
-            updatePostModal.onOpen();
-          }}
-          onRemove={(data) => {
-            selectedPost.current = data;
-            removePostModal.onOpen();
-          }}
-        />
+        <Divider my={8} />
+        <List of={posts} {...postsState} render={(item) => <PostItem item={item} {...postItemProps} />} />
       </Box>
     </>
   );

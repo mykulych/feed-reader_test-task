@@ -1,10 +1,10 @@
 import { Layout } from "../components/layout/Layout";
-import { NewsList } from "../components/newsList/NewsList";
+import { NewsContainer } from "../containers/NewsContainer";
 
 export const News = () => {
   return (
     <Layout>
-      <NewsList />
+      <NewsContainer />
     </Layout>
   );
 };
