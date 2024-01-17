@@ -2,9 +2,20 @@ import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody,
 import { useForm } from "react-hook-form";
 import { TextField } from "../fields/TextField";
 import { TextAreaField } from "../fields/TextAreaField";
+import { useEffect } from "react";
 
-export const PostModal = ({ isOpen, onClose, onSubmit, header  }) => {
-  const { register, handleSubmit } = useForm();
+export const PostModal = ({ isOpen, onClose, onSubmit, defaultValues, header  }) => {
+  const { register, setValue, handleSubmit, reset } = useForm();
+
+  useEffect(() => {
+    reset({})
+  }, [isOpen])
+
+  useEffect(() => {
+    setValue("title", defaultValues?.title);
+    setValue("body", defaultValues?.body);
+  }, [defaultValues])
+  
   return (
     <Modal isOpen={isOpen} onClose={onClose} isCentered={true}>
       <ModalOverlay />
@@ -18,8 +29,9 @@ export const PostModal = ({ isOpen, onClose, onSubmit, header  }) => {
                 id="title"
                 register={register}
                 placeholder="Post title"
+                validation={{ required: true }}
               />
-              <TextAreaField id="body" register={register} placeholder="Post body" />
+              <TextAreaField id="body" register={register} placeholder="Post body" validation={{required: true}} />
             </Stack>
           </ModalBody>
 
